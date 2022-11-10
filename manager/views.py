@@ -48,6 +48,7 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
 
 class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
     model = Worker
+    queryset = Worker.objects.prefetch_related("tasks")
 
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
