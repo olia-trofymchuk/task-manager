@@ -35,10 +35,21 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
 
 
-class PositionListView(LoginRequiredMixin, generic.ListView):
-    model = Position
-    template_name = "manager/position_list.html"
-    paginate_by = 5
+class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
+    model = TaskType
+    fields = "__all__"
+    success_url = reverse_lazy("manager:task-type-list")
+
+
+class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = TaskType
+    fields = "__all__"
+    success_url = reverse_lazy("manager:task-type-list")
+
+
+class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = TaskType
+    success_url = reverse_lazy("manager:task-type-list")
 
 
 class WorkerListView(LoginRequiredMixin, generic.ListView):
@@ -60,6 +71,12 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
 
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
+
+
+class PositionListView(LoginRequiredMixin, generic.ListView):
+    model = Position
+    template_name = "manager/position_list.html"
+    paginate_by = 5
 
 
 class PositionCreateView(LoginRequiredMixin, generic.CreateView):
