@@ -6,6 +6,7 @@
   {% if position_list %}
     <table class="table">
       <tr>
+        <th>ID</th>
         <th>Name</th>
         <th>Update</th>
         <th>Delete</th>
@@ -20,7 +21,7 @@
               {{ position.name }}
           </td>
           <td>
-              <a href="{% url 'manager:position_update' pk=position.id %}">
+              <a href="{% url 'manager:position-update' pk=position.id %}">
                 Update
               </a>
             </td>
