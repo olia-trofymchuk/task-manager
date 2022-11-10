@@ -39,12 +39,17 @@ class Task(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     deadline = models.DateTimeField()
-    priority = models.CharField(max_length=15,
-                                choices=CHOICES, default="Lowest")
+    priority = models.CharField(
+        max_length=15, choices=CHOICES, default="Lowest"
+    )
     task_type = models.ForeignKey(
         to=TaskType, on_delete=models.CASCADE, related_name="tasks"
     )
-    assignees = models.ManyToManyField(to=settings.AUTH_USER_MODEL, related_name="tasks")
+    assignees = models.ManyToManyField(
+        to=settings.AUTH_USER_MODEL, related_name="tasks"
+    )
 
     def __str__(self) -> str:
-        return f"{self.name} {self.description} {self.priority} {self.task_type}"
+        return (
+            f"{self.name} {self.description} {self.priority} {self.task_type}"
+        )
