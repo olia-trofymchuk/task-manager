@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Tasks list</h1>
+  <h1>Task list</h1>
   {% if task_list %}
     <ul>
       {% for task in task_list %}
         <li>
           <a href="{% url 'manager:task_detail' pk=task.id %} ">{{ task.id }}</a>
-          {{ task.name }} {{ task.task_type.name }} {{ task.is_completed }} {{ task.deadline }} {{ task.priority }}
+          {{ task.name }} ({{ task.task_type.name }})
         </li>
       {% endfor %}
     </ul>
   {% else %}
-    <p>There are no available tasks in list</p>
+    <p>There are no tasks to do</p>
   {% endif %}
 {% endblock %}
