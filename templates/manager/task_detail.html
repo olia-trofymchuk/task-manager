@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <p>Task:
+    {{ task.name }},
+    {{ task.description }},
+    {{ task.deadline }},
+    {{ task.is_completed }},
+    {{ task.priority }},
+    {{ task.task_type.name }}
+  </p>
+  <h1>Assignees</h1>
+  <hr>
+  <ul>
+  {% for worker in task.assignees.name %}
+    <li>{{ worker }}</li>
+  {% endfor %}
+  </ul>
+{% endblock %}
