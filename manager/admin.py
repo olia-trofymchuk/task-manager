@@ -10,7 +10,9 @@ class WorkerAdmin(UserAdmin):
         ("Additional info", {"fields": ("position",)}),
     )
     add_fieldsets = UserAdmin.add_fieldsets + (
-        ("Additional info", {"fields": ("position",)}),
+        ("Additional info", {"fields": ("first_name",
+                                        "last_name",
+                                        "position",)}),
     )
 
 
