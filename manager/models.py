@@ -47,7 +47,7 @@ class Task(models.Model):
         max_length=15, choices=CHOICES, default="Lowest"
     )
     task_type = models.ForeignKey(
-        to=TaskType, on_delete=models.CASCADE, related_name="tasks"
+        to=TaskType, on_delete=models.CASCADE
     )
     assignees = models.ManyToManyField(
         to=settings.AUTH_USER_MODEL, related_name="tasks"
