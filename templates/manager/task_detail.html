@@ -12,7 +12,7 @@
   <h1>Assignees</h1>
   <hr>
   <ul>
-  {% for worker in task.assignees.name %}
+  {% for worker in task.assignees.all %}
     <li>{{ worker }}</li>
   {% endfor %}
   </ul>
