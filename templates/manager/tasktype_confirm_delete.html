@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block content %}
+  <h1>Deleting {{ tasktype.name }}</h1>
+  <br>
+  <p><i>Are you sure you want to delete this type?</i></p>
+
+  <form action="" method="post">
+  {% csrf_token %}
+    <input type="submit" value="Yes, submit" class="btn btn-danger">
+    <a href="{% url 'manager:task-type-list' %}" class="btn btn-primary">Cancel</a>
+  </form>
+{% endblock %}
