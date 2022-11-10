@@ -1,12 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Worker list</h1>
+  <h1>
+    Worker list
+    <a href="{% url 'manager:worker-create' %}" class="btn btn-primary link-to-page">
+        Create
+      </a>
+  </h1>
+
   {% if worker_list %}
     <ul>
       {% for worker in worker_list %}
         <li>
-          <a href="{% url 'manager:worker_detail' pk=worker.id %}">{{ worker.username }}</a>
+          <a href="{% url 'manager:worker-detail' pk=worker.id %}">{{ worker.username }}</a>
           ({{ worker.first_name }} {{ worker.last_name }})
         {% if user.id == worker.id %}
           <span>(me)</span>
