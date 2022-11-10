@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     "manager",
 ]
 
-AUTH_USER_MODEL = "taxi.Worker"
+AUTH_USER_MODEL = "manager.Worker"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
