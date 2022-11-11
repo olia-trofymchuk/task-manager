@@ -28,9 +28,7 @@
       {% for type in tasktype_list %}
         <tr>
           <td>
-              <a href="{% url 'manager:task-type-detail' pk=type.id %}">
-                <strong>{{ type.id }}</strong>
-              </a>
+            <strong>{{ type.id }}</strong>
           </td>
           <td>
               {{ type.name }}
