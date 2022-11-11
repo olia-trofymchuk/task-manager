@@ -31,8 +31,14 @@ class TaskForm(forms.ModelForm):
 
     class Meta:
         model = Task
-        fields = ["name", "description", "deadline",
-                  "priority", "task_type", "assignees"]
+        fields = [
+            "name",
+            "description",
+            "deadline",
+            "priority",
+            "task_type",
+            "assignees",
+        ]
         widgets = {
             "deadline": forms.TextInput(attrs={"type": "date"}),
             "description": forms.Textarea(attrs={"rows": 3, "cols": 5}),
@@ -56,7 +62,9 @@ class TaskSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by task name..."}),
+        widget=forms.TextInput(
+            attrs={"placeholder": "Search by task name..."}
+        ),
     )
 
 
@@ -65,7 +73,9 @@ class TaskTypeSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by task type..."}),
+        widget=forms.TextInput(
+            attrs={"placeholder": "Search by task type..."}
+        ),
     )
 
 
