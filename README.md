@@ -34,11 +34,11 @@ Just sign in, create a task and you are off!
 
 ## Demo pages
 
-Login page
+* Login page
 ![Login page](login_page.png)
 
-Home page
+* Home page
 ![Home page](home_page.png)
 
-Page with tasks
+* Page with tasks
 ![Task page](task_list.png)
