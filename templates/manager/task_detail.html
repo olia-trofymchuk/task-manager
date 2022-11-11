@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    <a href="{% url 'manager:task-delete' pk=task.id %}" class="btn btn-danger link-to-page">
+      Delete
+    </a>
+
+    <a href="{% url 'manager:task-update' pk=task.id %}" class="btn btn-secondary link-to-page">
+      Update
+    </a>
+  </h1>
+
+  <h2><strong>Name:</strong> {{ task.name }}</h2>
+  <h5><strong>Description of task:</strong> {{ task.description }}</h5>
+  <h5><strong>Type of task:</strong> {{ task.task_type.name }}</h5>
+
+  <br>
+  <p><strong>Is completed:</strong> {{ task.is_completed }}</p>
+  <p ><strong>Deadline:</strong> {{ task.deadline }}</p>
+
+   {% if user in task.assignees.all %}
+    <a style="float: right" href="{% url 'manager:toggle-task-assign' pk=task.id %}">
+      <button type="button" class="btn btn-danger">
+        Delete me from this task
+      </button>
+    </a>
+    {% else %}
+      <a style="float: right" href="{% url 'manager:toggle-task-assign' pk=task.id %}">
+        <button type="button" class="btn btn-success">
+          Assign me to this task
+        </button>
+      </a>
+  {% endif %}
+
+  <hr>
+  <h4>Assignees:</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Last name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for worker in task.assignees.all %}
+        <tr>
+          <th scope="row">{{ worker.id }}</th>
+          <td>{{ worker.name }}</td>
+          <td>{{ worker.last_name }}</td>
+        </tr>
+      {% empty %}
+      <p>No workers in this task!</p>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

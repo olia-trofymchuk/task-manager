@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <h1>
+    Positions
+    <a href="{% url 'manager:position-create' %}" class="btn btn-outline-primary link-to-page">
+      Create
+    </a>
+  </h1>
+
+  <form action="" method="get" class="form_inline">
+    {{ search_form|crispy }}
+    <input type="submit" value="🔍" class="btn btn-outline-dark">
+  </form>
+
+  {% if position_list %}
+    <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+
+      {% for position in position_list %}
+        <tr>
+          <td>
+              <strong>{{ position.id }}</strong>
+          </td>
+          <td>
+              {{ position.name }}
+          </td>
+          <td>
+              <a href="{% url 'manager:position-update' pk=position.id %}">
+                Update
+              </a>
+            </td>
+            <td>
+              <a style="color: red"
+                href="{% url 'manager:position-delete' pk=position.id %}">
+                Delete
+              </a>
+            </td>
+        </tr>
+      {% endfor %}
+    </table>
+
+  {% else %}
+      <p>There are no positions in our table :(</p>
+  {% endif %}
+{% endblock %}
