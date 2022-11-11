@@ -35,6 +35,7 @@ class TaskForm(forms.ModelForm):
                   "priority", "task_type", "assignees"]
         widgets = {
             "deadline": forms.TextInput(attrs={"type": "date"}),
+            "description": forms.Textarea(attrs={"rows": 3, "cols": 5}),
         }
 
     def clean_deadline(self):
@@ -51,11 +52,11 @@ class WorkerSearchForm(forms.Form):
 
 
 class TaskSearchForm(forms.Form):
-    task = forms.CharField(
+    name = forms.CharField(
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by task..."}),
+        widget=forms.TextInput(attrs={"placeholder": "Search by task name..."}),
     )
 
 
@@ -69,7 +70,7 @@ class TaskTypeSearchForm(forms.Form):
 
 
 class PositionSearchForm(forms.Form):
-    type = forms.CharField(
+    name = forms.CharField(
         max_length=255,
         required=False,
         label="",
