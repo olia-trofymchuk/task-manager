@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <h1>
+    Task list
+    <a href="{% url 'manager:task-create' %}" class="btn btn-outline-primary link-to-page">
+      Create
+    </a>
+  </h1>
+
+  <form action="" method="get" class="form_inline">
+      {{ search_form|crispy }}
+      <input type="submit" value="🔍" class="btn btn-outline-dark">
+  </form>
+
+  {% if task_list %}
+    <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Deadline</th>
+          <th>Priority</th>
+          <th>Is completed</th>
+        </tr>
+      </thead>
+
+    {% for task in task_list %}
+      <tr>
+        <td><a href="{% url 'manager:task-detail' pk=task.id %}"><strong>{{ task.id }}</strong></a></td>
+        <td>{{ task.name }}</td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.deadline }}</td>
+        <td>{{ task.priority }}</td>
+        {% if task.is_completed %}
+          <td>
+            <a href="{% url 'manager:task-delete' pk=task.id %}" class="btn btn-success btn-sm">
+              Task is complete
+            </a>
+          </td>
+          {% else %}
+          <td>
+            <a href="{% url 'manager:task-update' pk=task.id %}" class="btn btn-primary btn-sm">
+              Make this task
+            </a>
+          </td>
+        {% endif %}
+      </tr>
+    {% endfor %}
+    </table>
+  {% else %}
+    <p>There are no tasks in list :)</p>
+  {% endif %}
+{% endblock %}
