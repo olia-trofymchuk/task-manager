@@ -1,18 +1,54 @@
 {% extends "base.html" %}
 
 {% block content %}
- <p><strong>
-    {{ worker.first_name }} {{ worker.last_name }}.</strong>
-    Position: {{ worker.position }}
-  </p>
-  {% for task in worker.tasks.all %}
-    <hr>
-    <p><strong>Id:</strong>{{ task.id }}
-      <strong>Task name:</strong> {{ task.name }}
-    </p>
+  <h2>
+    Username: {{ worker.username }}
+    <a href="{% url 'manager:worker-update' pk=worker.id %}" class="btn btn-primary link-to-page">
+      Update
+    </a>
+    <a href="{% url 'manager:worker-delete' pk=worker.id %}" class="btn btn-danger link-to-page">
+      Delete
+    </a>
+  </h2>
 
-  {% empty %}
-    <p>No tasks!</p>
-  {% endfor %}
+  <p><strong>First name:</strong> {{ worker.first_name }}</p>
+  <p><strong>Last name:</strong> {{ worker.last_name }}</p>
+  <p><strong>Position:</strong> {{ worker.position.name }}
 
+  <hr>
+  <h4>Tasks belonging to this worker</h4>
+  <table class="table table-striped">
+    {% for task in worker.tasks.all %}
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Deadline
+          <th scope="col">Is completed</th>
+          <th scope="col">Priority</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if task.priority == "Urgent" or task.priority == "High" and not task.is_completed %}
+          <tr style="background-color: red">
+            <th scope="row">{{ task.id }}</th>
+            <td>{{ task.name }}</td>
+            <td>{{ task.deadline }}</td>
+            <td>{{ task.is_completed }}</td>
+            <td>{{ task.priority }}</td>
+          </tr>
+        {% else %}
+          <tr>
+            <th scope="row">{{ task.id }}</th>
+            <td>{{ task.name }}</td>
+            <td>{{ task.deadline }}</td>
+            <td>{{ task.is_completed }}</td>
+            <td>{{ task.priority }}</td>
+          </tr>
+        {% endif %}
+    {% empty %}
+      <p>No tasks belonging to this worker!</p>
+    {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}

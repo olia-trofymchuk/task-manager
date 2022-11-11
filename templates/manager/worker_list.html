@@ -1,25 +1,52 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 
 {% block content %}
   <h1>
     Worker list
-    <a href="{% url 'manager:worker-create' %}" class="btn btn-primary link-to-page">
+    <a href="{% url 'manager:worker-create' %}" class="btn btn-outline-primary link-to-page">
         Create
-      </a>
+    </a>
   </h1>
 
+  <form action="" method="get" class="form_inline">
+    {{ search_form|crispy }}
+    <input type="submit" value="🔍" class="btn btn-outline-dark">
+  </form>
+
   {% if worker_list %}
-    <ul>
+    <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Username</th>
+          <th scope="col">First name</th>
+          <th scope="col">Last name</th>
+          <th scope="col">Email</th>
+        </tr>
+      </thead>
+
       {% for worker in worker_list %}
-        <li>
-          <a href="{% url 'manager:worker-detail' pk=worker.id %}">{{ worker.username }}</a>
-          ({{ worker.first_name }} {{ worker.last_name }})
-        {% if user.id == worker.id %}
-          <span>(me)</span>
-        {% endif %}
-        </li>
+        <tr>
+          <td>
+              <a href="{{ worker.get_absolute_url }}">{{ worker.id }} {% if user == worker %} (Me){% endif %}</a>
+          </td>
+          <td>
+              {{ worker.username }}
+          </td>
+          <td>
+              {{ worker.first_name }}
+          </td>
+          <td>
+              {{ worker.last_name }}
+          </td>
+          <td>
+              {{ worker.email }}
+          </td>
+        </tr>
       {% endfor %}
-    </ul>
+    </table>
+
   {% else %}
     <p>There are no workers in team</p>
   {% endif %}
