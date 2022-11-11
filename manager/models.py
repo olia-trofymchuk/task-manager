@@ -54,9 +54,7 @@ class Task(models.Model):
     priority = models.CharField(
         max_length=15, choices=CHOICES, default="Lowest"
     )
-    task_type = models.ForeignKey(
-        to=TaskType, on_delete=models.CASCADE
-    )
+    task_type = models.ForeignKey(to=TaskType, on_delete=models.CASCADE)
     assignees = models.ManyToManyField(
         to=settings.AUTH_USER_MODEL, related_name="tasks"
     )
@@ -65,6 +63,4 @@ class Task(models.Model):
         ordering = ["is_completed", "-priority"]
 
     def __str__(self) -> str:
-        return (
-            f"{self.name} {self.description} {self.priority}"
-        )
+        return f"{self.name} {self.description} {self.priority}"

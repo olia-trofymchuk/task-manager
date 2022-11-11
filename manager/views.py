@@ -6,8 +6,14 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .forms import WorkerCreationForm, TaskForm, TaskTypeSearchForm, WorkerSearchForm, TaskSearchForm, \
-    PositionSearchForm
+from .forms import (
+    WorkerCreationForm,
+    TaskForm,
+    TaskTypeSearchForm,
+    WorkerSearchForm,
+    TaskSearchForm,
+    PositionSearchForm,
+)
 from .models import Worker, Task, Position, TaskType
 
 
@@ -83,13 +89,15 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     paginate_by = 5
     queryset = Worker.objects.select_related("position")
-    
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(WorkerListView, self).get_context_data(**kwargs)
 
         username = self.request.GET.get("name", "")
 
-        context["search_form"] = WorkerSearchForm(initial={"username": username})
+        context["search_form"] = WorkerSearchForm(
+            initial={"username": username}
+        )
 
         return context
 
@@ -219,9 +227,7 @@ class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
 def toggle_assign_to_task(request, pk):
     worker = get_user_model().objects.get(id=request.user.id)
     task = Task.objects.get(id=pk)
-    if (
-        task in worker.tasks.all()
-    ):
+    if task in worker.tasks.all():
         worker.tasks.remove(pk)
     else:
         worker.tasks.add(pk)
