@@ -4,7 +4,7 @@ Django Project for managing tasks in IT Company
 
 ## Check it out!
 
-[Project deployed to Heroku](https://github.com/mate-academy/py-task-guideline/blob/main/README.md)
+[Task Manager Project deployed to Render](https://task-manager-sufi.onrender.com)
 
 ## Installation
 
