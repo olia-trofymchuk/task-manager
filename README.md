@@ -46,4 +46,4 @@ password: user12345
 ![Home page](home_page.png)
 
 * Page with tasks
-![Task page](task_list.png)
+![Task page](task-list.png)
