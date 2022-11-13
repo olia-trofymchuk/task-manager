@@ -29,8 +29,16 @@
         </tr>
       </thead>
       <tbody>
-        {% if task.priority == "Urgent" or task.priority == "High" and not task.is_completed %}
-          <tr style="background-color: red">
+        {% if task.priority == "Urgent" and not task.is_completed or task.priority == "High" and not task.is_completed %}
+          <tr style="background-color: rgba(255,0,0,0.69)">
+            <th scope="row">{{ task.id }}</th>
+            <td>{{ task.name }}</td>
+            <td>{{ task.deadline }}</td>
+            <td>{{ task.is_completed }}</td>
+            <td>{{ task.priority }}</td>
+          </tr>
+        {% elif task.is_completed %}
+          <tr style="background-color: rgba(2,197,2,0.76)">
             <th scope="row">{{ task.id }}</th>
             <td>{{ task.name }}</td>
             <td>{{ task.deadline }}</td>

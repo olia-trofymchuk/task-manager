@@ -23,8 +23,8 @@ def index(request):
     num_tasks = Task.objects.count()
     num_positions = Position.objects.count()
     num_task_types = TaskType.objects.count()
-    num_task_not_completed = Task.objects.values("is_completed").count()
-    num_task_completed = num_tasks - num_task_not_completed
+    num_task_completed = Task.objects.filter(is_completed=True).count()
+    num_task_not_completed = num_tasks - num_task_completed
 
     num_visits = request.session.get("num_visits", 0)
     request.session["num_visits"] = num_visits + 1
@@ -172,7 +172,7 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
 
 class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Task
-    fields = ["deadline", "is_completed", "assignees"]
+    fields = ["is_completed", "deadline", "priority", "assignees"]
     success_url = reverse_lazy("manager:task-list")
 
 

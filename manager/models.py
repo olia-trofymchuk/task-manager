@@ -40,11 +40,11 @@ class Worker(AbstractUser):
 
 class Task(models.Model):
     CHOICES = (
-        ("Urgent", "Urgent"),
-        ("High", "High"),
-        ("Medium", "Medium"),
-        ("Low", "Low"),
-        ("Lowest", "Lowest"),
+        ("1 - Urgent", "1 - Urgent"),
+        ("2 - High", "2 - High"),
+        ("3 - Medium", "3 - Medium"),
+        ("4 - Low", "4 - Low"),
+        ("5 - Lowest", "5 - Lowest"),
     )
 
     name = models.CharField(max_length=255)
@@ -52,7 +52,7 @@ class Task(models.Model):
     deadline = models.DateField()
     is_completed = models.BooleanField(default=False)
     priority = models.CharField(
-        max_length=15, choices=CHOICES, default="Lowest"
+        max_length=15, choices=CHOICES, default="5 - Lowest"
     )
     task_type = models.ForeignKey(to=TaskType, on_delete=models.CASCADE)
     assignees = models.ManyToManyField(
@@ -60,7 +60,7 @@ class Task(models.Model):
     )
 
     class Meta:
-        ordering = ["is_completed", "-priority"]
+        ordering = ["is_completed", "priority", "deadline"]
 
     def __str__(self) -> str:
         return f"{self.name} {self.description} {self.priority}"
