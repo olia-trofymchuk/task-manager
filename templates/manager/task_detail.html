@@ -47,7 +47,7 @@
       {% for worker in task.assignees.all %}
         <tr>
           <th scope="row">{{ worker.id }}</th>
-          <td>{{ worker.name }}</td>
+          <td>{{ worker.first_name }}</td>
           <td>{{ worker.last_name }}</td>
         </tr>
       {% empty %}
