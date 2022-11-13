@@ -29,6 +29,11 @@ python manage.py runserver # starts Django Server
 
 Just sign in, create a task and you are off!
 
+```shell
+login: user
+password: user12345
+```
+
 ## DB Structure
 ![DB Structure](db.jpg)
 
