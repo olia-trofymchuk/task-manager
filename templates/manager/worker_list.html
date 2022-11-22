@@ -29,7 +29,8 @@
       {% for worker in worker_list %}
         <tr>
           <td>
-              <a href="{{ worker.get_absolute_url }}">{{ worker.id }} {% if user == worker %} (Me){% endif %}</a>
+              <a style="color: #0224ce"
+                  href="{{ worker.get_absolute_url }}">{{ worker.id }} {% if user == worker %} (Me){% endif %}</a>
           </td>
           <td>
               {{ worker.username }}

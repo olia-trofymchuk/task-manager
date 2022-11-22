@@ -193,3 +193,40 @@ class PrivateTaskTest(TestCase):
 
         self.assertEqual(new_task.name, form_data["name"])
         self.assertEqual(new_task.priority, form_data["priority"])
+
+
+class SearchTests(TestCase):
+    def setUp(self) -> None:
+        self.user = get_user_model().objects.create_user(
+            username="test",
+            password="password123",
+        )
+        self.client.force_login(self.user)
+
+    def test_task_search(self):
+        response = self.client.get(TASK_LIST_URL + "?name=test")
+        self.assertEqual(
+            list(response.context["task_list"]),
+            list(Task.objects.filter(name__icontains="test")),
+        )
+
+    def test_task_type_search(self):
+        response = self.client.get(TASK_TYPE_LIST_URL + "?name=test")
+        self.assertEqual(
+            list(response.context["tasktype_list"]),
+            list(TaskType.objects.filter(name__icontains="test")),
+        )
+
+    def test_worker_search(self):
+        response = self.client.get(WORKER_LIST_URL + "?username=test")
+        self.assertEqual(
+            list(response.context["worker_list"]),
+            list(get_user_model().objects.filter(username__icontains="test")),
+        )
+
+    def test_position_search(self):
+        response = self.client.get(POSITION_LIST_URL + "?name=test")
+        self.assertEqual(
+            list(response.context["position_list"]),
+            list(Position.objects.filter(name__icontains="test")),
+        )

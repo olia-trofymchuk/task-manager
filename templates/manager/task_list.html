@@ -30,11 +30,15 @@
     {% for task in task_list %}
       <tr>
         <td>
-          <a href="{% url 'manager:task-detail' pk=task.id %}">
-            <strong>{{ task.id }}</strong>
+          <a href="{% url 'manager:task-detail' pk=task.id %}" style="color: #0224ce">
+            {{ task.id }}
           </a>
         </td>
-        <td>{{ task.name }}</td>
+        <td>
+          <a href="{% url 'manager:task-detail' pk=task.id %}" style="color: #0224ce">
+            {{ task.name }}
+          </a>
+        </td>
         <td>{{ task.description }}</td>
         <td>{{ task.deadline }}</td>
         <td>{{ task.priority }}</td>

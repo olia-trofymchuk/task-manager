@@ -11,12 +11,12 @@
       <div class="col-sm-12 col-md-12 col-lg-6 pb-4">
         <h1 class="display-4 font-weight-bold">Task Manager Home</h1>
         <p>Task Manager has the following record counts:</p>
-        <ul>
-          <li><strong>Workers:</strong> {{ num_worker }}</li>
-          <li><strong>Tasks:</strong> {{ num_tasks }}</li>
-          <li><strong>Task types:</strong> {{ num_task_types }}</li>
-          <li><strong>Positions:</strong> {{ num_positions }}</li>
-        </ul>
+        <p>
+          <strong>Workers:</strong> {{ num_worker }}<br>
+          <strong>Tasks:</strong> {{ num_tasks }}<br>
+          <strong>Task types:</strong> {{ num_task_types }}<br>
+          <strong>Positions:</strong> {{ num_positions }}<br>
+        </p>
         <p>You have visited this page: {{ num_visits }} time{{ num_visits|pluralize }}.</p>
         <br>
         <p>
