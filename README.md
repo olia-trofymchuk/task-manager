@@ -16,6 +16,7 @@ cd task-manager
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+python manage.py migrate # initialize database
 python manage.py runserver # starts Django Server
 ```
 
@@ -33,6 +34,11 @@ Just sign in, create a task and you are off!
 login: user
 password: user12345
 ```
+
+#### Shh! You can check how the admin panel works!
+Click on this link and check all the power!
+
+[Admin panel](https://task-manager-sufi.onrender.com/admin/)
 
 ## DB Structure
 ![DB Structure](db.jpg)
