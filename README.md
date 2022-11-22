@@ -52,4 +52,4 @@ Click on this link and check all the power!
 ![Home page](home_page.png)
 
 * Page with tasks
-![Task page](task-list.png)
+![Task page](task_list.png)
