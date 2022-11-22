@@ -16,7 +16,7 @@ cd task-manager
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-python manage.py migrate # initialize database
+python manage.py migrate # initializes database
 python manage.py runserver # starts Django Server
 ```
 
